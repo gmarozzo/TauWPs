@@ -21,6 +21,8 @@ void analyze(TString srcfile, int sample) {
   TFile *output= new TFile("testoutput.root","RECREATE");
   TTree* tree = (TTree*)f->Get("Events");
 
+  //Declare histograms
+
   TH1F *thvseselected = new TH1F("thvseselected","thvseselected",1000,0,1);
   TH1F *thvsmuselected = new TH1F("thvsmuselected","thvsmuselected",1000,0,1);
   TH1F *thvsjetselected = new TH1F("thvsjetselected","thvsjetselected",1000,0,1);
@@ -37,6 +39,8 @@ void analyze(TString srcfile, int sample) {
   TH1F *thvsmutotalBG = new TH1F("thvsmutotalBG","thvsmutotal",1000,0,1);
   TH1F *thvsjettotalBG = new TH1F("thvsjettotalBG","thvsjettotal",1000,0,1);
   
+  //Read branches from Tree
+
   tree->SetBranchStatus("*", 0);
 
   tree->SetBranchStatus("Tau_pt", 1);
