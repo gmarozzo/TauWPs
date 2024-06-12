@@ -1,5 +1,5 @@
 executable              = $(directory)/batchScript.sh
-arguments               = /afs/cern.ch/user/g/gmarozzo/CMSSW_12_4_6/src/Run3VBSPol/Run3VBSPol/test/NanoAOD/$(directory) $(ClusterId)$(ProcId) a b
+arguments               = /afs/cern.ch/user/g/gmarozzo/TauWPs/$(directory) $(ClusterId)$(ProcId) a b
 output                  = log/$(ClusterId).$(ProcId).out
 error                   = log/$(ClusterId).$(ProcId).err
 log                     = log/$(ClusterId).log
