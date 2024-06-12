@@ -17,8 +17,6 @@ fi
 cd $SUBMIT_DIR
 dir_name=$(basename $(pwd))
 
-eval $(scram ru -sh)
-
 cp ../TauEffForPOG.exe $_CONDOR_SCRATCH_DIR
 
 cd $_CONDOR_SCRATCH_DIR
@@ -30,7 +28,7 @@ echo path: `pwd`
 
 cmsRunStatus=   #default for successful completion is an empty file
 #root -l -q 'TauEffForPOG.C(CCCCC,"AAAAA/BBBBB")' |& grep -v -e 'MINUIT WARNING' -e 'Second derivative zero' -e 'Negative diagonal element' -e 'added to diagonal of error matrix' > log.txt || cmsRunStatus=$?
-./TauEffForPOG.exe "AAAAA" $test1 $test2 > log.txt || cmsRunStatus=$?
+./TauEffForPOG.exe "AAAAA" > log.txt || cmsRunStatus=$?
 
 echo -n $cmsRunStatus > exitStatus.txt
 echo 'cmsRun done at: ' $(date) with exit status: ${cmsRunStatus+0}
