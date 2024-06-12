@@ -19,7 +19,7 @@ dir_name=$(basename $(pwd))
 
 eval $(scram ru -sh)
 
-cp ../TauEff.exe $_CONDOR_SCRATCH_DIR
+cp ../TauEffForPOG.exe $_CONDOR_SCRATCH_DIR
 
 cd $_CONDOR_SCRATCH_DIR
 
@@ -29,8 +29,8 @@ echo 'Running at:' $(date)
 echo path: `pwd`
 
 cmsRunStatus=   #default for successful completion is an empty file
-#root -l -q 'TauEff.C(CCCCC,"AAAAA/BBBBB")' |& grep -v -e 'MINUIT WARNING' -e 'Second derivative zero' -e 'Negative diagonal element' -e 'added to diagonal of error matrix' > log.txt || cmsRunStatus=$?
-./TauEff.exe "AAAAA/BBBBB" "CCCCC" $haha1 $haha2 > log.txt || cmsRunStatus=$?
+#root -l -q 'TauEffForPOG.C(CCCCC,"AAAAA/BBBBB")' |& grep -v -e 'MINUIT WARNING' -e 'Second derivative zero' -e 'Negative diagonal element' -e 'added to diagonal of error matrix' > log.txt || cmsRunStatus=$?
+./TauEffForPOG.exe "AAAAA" $test1 $test2 > log.txt || cmsRunStatus=$?
 
 echo -n $cmsRunStatus > exitStatus.txt
 echo 'cmsRun done at: ' $(date) with exit status: ${cmsRunStatus+0}
@@ -52,7 +52,7 @@ ls -la
 rm -f br.sm1 br.sm2 ffwarn.dat input.DAT process.DAT "$USER.cc"
 
 #delete submission scripts, so that they are not copied back (which fails sometimes)
-rm -f TauEff.exe batchScript.sh *.json.gz
+rm -f TauEffForPOG.exe batchScript.sh *.json.gz
 
 echo '...done at' $(date)
 

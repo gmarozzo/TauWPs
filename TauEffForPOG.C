@@ -12,12 +12,9 @@
 
 using namespace std;
 
-void analyze(TString srcfile, int sample) {
-  TString extra="";
-  if(sample!=0) extra="root://xrootd-cms.infn.it/"; 
-  TString filename = extra + srcfile;
-  cout<<"Opening "<<filename<<endl;
-  TFile *f = TFile::Open(filename);
+void analyze(TString srcfile) {
+  cout<<"Opening "<<srcfile<<endl;
+  TFile *f = TFile::Open(srcfile);
   TFile *output= new TFile("testoutput.root","RECREATE");
   TTree* tree = (TTree*)f->Get("Events");
 
@@ -193,21 +190,8 @@ void analyze(TString srcfile, int sample) {
 int main(int argc, char* argv[]) {
 
   TString filename=argv[1];
-  int sample= std::atoi(argv[2]);
-  TString srcfile;
 
-  if(sample==0)
-    srcfile="/eos/user/g/gmarozzo/crabOutput/GluGluHToTauTau_M125/Output.root";
-  if(sample==1)
-    srcfile="/store/mc/Run3Summer22NanoAODv12/GluGluHto2Tau_M-125_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/" + filename;
-  if(sample==2)
-    srcfile="/store/mc/Run3Summer22EENanoAODv12/GluGluHto2Tau_M-125_TuneCP5_13p6TeV_amcatnloFXFX-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v2/" + filename;
-  if(sample==3)
-    srcfile="/store/mc/Run3Summer22NanoAODv12/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_v5-v2/" + filename;
-  if(sample==4)
-    srcfile="/store/mc/Run3Summer22EENanoAODv12/TTtoLNu2Q_TuneCP5_13p6TeV_powheg-pythia8/NANOAODSIM/130X_mcRun3_2022_realistic_postEE_v6-v2/" + filename;
-
-  analyze(srcfile,sample);
+  analyze(filename);
 
   return 1;
 }
