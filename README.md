@@ -2,9 +2,10 @@ Repo for Working Point computations for Tau POG.
 
 # Running on HTCondor
 
-The CreateJobs.py script creates one condor job for each input file. Currently it is setup for 2022 and 2022EE H->TauTau MC samples. To submit these jobs:
+The CreateJobs.py script creates one condor job for each input file. Currently it is setup for Run 2 and for HtoTauTau (signal) + TTToSemiLeptonic (bg) samples. To create and submit these jobs:
 
 ```bash
+python3 CreateJobs.py
 csh resubmit_Condor.csh
 ```
 
@@ -27,7 +28,7 @@ g++ -o "TauEffForPOG.exe" "TauEffForPOG.C" $(root-config --cflags --glibs)
 After that, it can be run with: 
 
 ```bash
-./TauEffForPog.exe "" "0"
+./TauEffForPog.exe "PATHTOFILE"
 ```
 
 This will create a testoutput.root file, which can then be analyzed to extract the efficiencies.
